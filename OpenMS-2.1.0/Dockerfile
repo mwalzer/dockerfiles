@@ -1,5 +1,5 @@
 #OpenMS 2.1.0 container basing upon OpenMS-contrib image
-FROM openms-contrib-2.1.0  
+FROM quay.io/mwalzer/openms-contrib-2.1.0  
 
 LABEL software="OpenMS"
 LABEL software.version="2.1.0"
