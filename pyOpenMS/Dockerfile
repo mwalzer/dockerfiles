@@ -1,7 +1,7 @@
-FROM openms/library
+FROM openms/library:v2.0.1
 
 LABEL software="pyOpenMS"
-LABEL software.version="develop"
+LABEL software.version="v2.0.1"
 LABEL website="https://www.OpenMS.de"
 LABEL documentation="https://www.OpenMS.de/documentation/"
 LABEL tags="proteomics, mass spectrometry"
@@ -16,7 +16,7 @@ RUN apt-get update -y && apt-get install -y python-pip python-dev python-numpy
 RUN pip install nose
 RUN pip install -U setuptools
 RUN pip install Cython
-RUN pip install autowrap
+RUN pip install 'autowrap==0.7.2'
 RUN cmake -DCMAKE_PREFIX_PATH="/contrib-build/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off -DPYOPENMS=On ../OpenMS
 
 # make OpenMS library
