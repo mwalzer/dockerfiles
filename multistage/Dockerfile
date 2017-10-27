@@ -1,4 +1,4 @@
-FROM openms/library as library
+FROM openms/library:v2.1.0 as library
 ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /openms-build
@@ -18,7 +18,7 @@ FROM ubuntu:14.04
 ENV DEBIAN_FRONTEND noninteractive
 
 LABEL software="OpenMS executables"
-LABEL software.version="develop"
+LABEL software.version="v2.1.0"
 LABEL website="https://www.OpenMS.de"
 LABEL documentation="https://www.OpenMS.de/documentation/"
 LABEL tags="proteomics, mass spectrometry"

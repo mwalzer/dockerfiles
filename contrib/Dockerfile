@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 LABEL software="OpenMS contrib"
-LABEL software.version="develop"
+LABEL software.version="v2.1.0"
 LABEL website="https://www.OpenMS.de"
 LABEL documentation="https://www.OpenMS.de/documentation/"
 LABEL tags="proteomics, mass spectrometry"
@@ -23,7 +23,7 @@ RUN apt-get -y update
 RUN apt-get install -y cmake
 
 # Step 3: advanced dependencies
-RUN apt-get install -y --no-install-recommends --no-install-suggests libsvm-dev libglpk-dev libzip-dev zlib1g-dev libxerces-c-dev libbz2-dev
+RUN apt-get install -y --no-install-recommends --no-install-suggests libsvm-dev libglpk-dev libzip-dev zlib1g-dev libxerces-c-dev libbz2-dev libeigen3-dev
 RUN apt-get install -y --no-install-recommends --no-install-suggests libboost-date-time1.54-dev \
                                                                      libboost-iostreams1.54-dev \
                                                                      libboost-regex1.54-dev \
@@ -36,16 +36,15 @@ RUN apt-get install -y --no-install-recommends --no-install-suggests libqt4-dev 
 
 ###################################
 # Step 5: Compiled dependencies
-RUN git clone https://github.com/OpenMS/contrib.git && rm -rf contrib/.git/
+RUN git clone --branch 'Release2.1.0' --single-branch --depth 1 https://github.com/OpenMS/contrib.git && rm -rf contrib/.git/
 RUN mkdir contrib-build
 
 WORKDIR /contrib-build
 
 RUN cmake -DBUILD_TYPE=SEQAN ../contrib && rm -rf archives src
 RUN cmake -DBUILD_TYPE=WILDMAGIC ../contrib && rm -rf archives src
-RUN cmake -DBUILD_TYPE=EIGEN ../contrib && rm -rf archives src
 RUN cmake -DBUILD_TYPE=COINOR ../contrib && rm -rf archives src
-RUN cmake -DBUILD_TYPE=SQLITE ../contrib && rm -rf archives src
+RUN cmake -DBUILD_TYPE=GSL ../contrib && rm -rf archives src
 
 WORKDIR /
 

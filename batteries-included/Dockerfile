@@ -1,4 +1,4 @@
-FROM openms/library as library
+FROM openms/library:v2.1.0 as library
 ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /openms-build
@@ -9,9 +9,9 @@ RUN apt-get install -y --no-install-recommends --no-install-suggests binutils su
 RUN for l in lib/*.so; do strip --strip-all $l; done
 
 RUN mkdir /opt/thirdparty && \
-    svn checkout https://github.com/OpenMS/THIRDPARTY/trunk/Linux/64bit /opt/thirdparty && \
+    svn checkout https://github.com/OpenMS/THIRDPARTY/tags/Release2.1.0/Linux/64bit /opt/thirdparty && \
     rm -rf /opt/thirdparty/.svn && \
-    svn checkout https://github.com/OpenMS/THIRDPARTY/trunk/All /opt/thirdparty && \
+    svn checkout https://github.com/OpenMS/THIRDPARTY/tags/Release2.1.0/All /opt/thirdparty && \
     rm -rf /opt/thirdparty/.svn
 
 ENV PATH /opt/thirdparty/Fido:/opt/thirdparty/LuciPHOr2:/opt/thirdparty/MSGFPlus:/opt/thirdparty/MyriMatch:/opt/thirdparty/OMSSA:/opt/thirdparty/XTandem:$PATH
@@ -22,7 +22,7 @@ FROM ubuntu:14.04
 ENV DEBIAN_FRONTEND noninteractive
 
 LABEL software="OpenMS batteries included"
-LABEL software.version="develop"
+LABEL software.version="v2.1.0"
 LABEL website="https://www.OpenMS.de"
 LABEL documentation="https://www.OpenMS.de/documentation/"
 LABEL tags="proteomics, mass spectrometry"

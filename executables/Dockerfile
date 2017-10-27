@@ -1,7 +1,7 @@
-FROM openms/library 
+FROM openms/library:v2.1.0 
 
 LABEL software="OpenMS executables"
-LABEL software.version="develop"
+LABEL software.version="v2.1.0"
 LABEL website="https://www.OpenMS.de"
 LABEL documentation="https://www.OpenMS.de/documentation/"
 LABEL tags="proteomics, mass spectrometry"
@@ -16,7 +16,7 @@ RUN make TOPP && make UTILS && rm -rf src doc CMakeFiles
 
 WORKDIR /
 ENV PATH="/openms-build/bin/:${PATH}"
-ENV LD_LIBRARY_PATH="="/openms-build/lib/:${LD_LIBRARY_PATH}"
+ENV LD_LIBRARY_PATH="/openms-build/lib/:${LD_LIBRARY_PATH}"
 ENV OPENMS_DATA_PATH /OpenMS/share/OpenMS
 
 RUN useradd -u 1001 -U -d /home/OpenMSuser -m -s /bin/bash OpenMSuser
