@@ -11,7 +11,7 @@ LABEL base.image="ubuntu:16.04"
 ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /
 
-RUN git clone --depth 1 --branch 'feature/proteomic_lfq'  --single-branch https://github.com/mwalzer/OpenMS.git
+RUN git clone --depth 1 --branch 'feature/proteomic_lfq'  --single-branch https://github.com/OpenMS/OpenMS.git
 
 RUN mkdir openms-build
 
