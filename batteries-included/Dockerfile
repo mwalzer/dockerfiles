@@ -23,7 +23,8 @@ FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND noninteractive
 
 LABEL software="OpenMS batteries included"
-LABEL software.version="LFQtool2.4.0"
+#LABEL software.version="LFQtool2.4.0"
+LABEL software.version="2.4.0"
 LABEL website="https://www.OpenMS.de"
 LABEL documentation="https://www.OpenMS.de/documentation/"
 LABEL tags="proteomics, mass spectrometry"
@@ -66,7 +67,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD5
 RUN add-apt-repository 'deb [arch=amd64,i386] https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/'
 RUN apt-get update && apt install -y r-base
 # install MSstats
-RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite("MSstats",ask=FALSE,suppressUpdates=TRUE);'
+#RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite("MSstats",ask=FALSE,suppressUpdates=TRUE);'
+RUN Rscript -e 'if (!requireNamespace("BiocManager", quietly=TRUE)) install.packages("BiocManager"); BiocManager::install("MSstats");'
 
 RUN apt-get install -qq -y --no-install-recommends --no-install-suggests openjdk-8-jre > /dev/null		      
 RUN apt-get autoremove -y && \

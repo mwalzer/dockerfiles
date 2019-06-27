@@ -1,7 +1,8 @@
 FROM openms/contrib
 
 LABEL software="OpenMS library"
-LABEL software.version="LFQtool2.4.0"
+LABEL software.version="2.4.0"
+#LABEL software.version="LFQtool2.4.0"
 LABEL website="https://www.OpenMS.de"
 LABEL documentation="https://www.OpenMS.de/documentation/"
 LABEL tags="proteomics, mass spectrometry"
@@ -11,7 +12,8 @@ LABEL base.image="ubuntu:16.04"
 ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /
 
-RUN git clone --depth 1 --branch 'feature/proteomic_lfq'  --single-branch https://github.com/OpenMS/OpenMS.git
+RUN git clone --depth 1 --branch 'Release2.4.0'  --single-branch https://github.com/OpenMS/OpenMS.git
+#RUN git clone --depth 1 --branch 'feature/proteomic_lfq'  --single-branch https://github.com/OpenMS/OpenMS.git
 
 RUN mkdir openms-build
 
